@@ -2,7 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph.xml">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FRHome">
 
 
+    <fragment
+        android:id="@+id/FRHome"
+        android:name="com.ozerol.budgetmanager.FRHome"
+        android:label="fr_home"
+        tools:layout="@layout/fr_home" />
 </navigation>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Budget Manager</string>
+    <string name="ekle">EKLE</string>
+    <string name="tl">TL</string>
+    <string name="sterlin">STERLIN</string>
+    <string name="euro">EURO</string>
+    <string name="dolar">DOLAR</string>
 </resources>

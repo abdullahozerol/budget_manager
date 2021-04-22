@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/FRHome"
-        android:name="com.ozerol.budgetmanager.FRHome"
+        android:name="com.ozerol.budgetmanager.home.FRHome"
         android:label="fr_home"
         tools:layout="@layout/fr_home" />
 </navigation>

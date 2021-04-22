@@ -1,4 +1,4 @@
-package com.ozerol.budgetmanager
+package com.ozerol.budgetmanager.home
 
 import androidx.lifecycle.ViewModel
 

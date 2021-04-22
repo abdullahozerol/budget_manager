@@ -1,31 +1,25 @@
 package com.ozerol.budgetmanager
 
-import androidx.lifecycle.ViewModelProvider
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import com.ozerol.budgetmanager.databinding.FrHomeBinding
 
 class FRHome : Fragment() {
-
-    companion object {
-        fun newInstance() = FRHome()
-    }
-
-    private lateinit var viewModel: FRHomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fr_home, container, false)
+
+        val binding : FrHomeBinding = DataBindingUtil.inflate(inflater,R.layout.fr_home,container,false)
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FRHomeViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

@@ -6,15 +6,15 @@
     <data>
 
         <variable
-            name="frAddExpenseViewModel"
-            type="com.ozerol.budgetmanager.addexpense.FRAddExpenseViewModel" />
+            name="frProfileViewModel"
+            type="com.ozerol.budgetmanager.profile.FRProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cream_0"
-        tools:context=".addexpense.FRAddExpense">
+        tools:context=".profile.FRProfile">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="@string/add_expense"
+                android:text="@string/change_name"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="24sp" />
 
@@ -42,8 +42,9 @@
             android:background="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar" />
 
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_description"
+            android:id="@+id/til_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,100 +65,37 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/expense_description"
-                android:maxLength="40" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_cost"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            app:boxCornerRadiusBottomEnd="28dp"
-            app:boxCornerRadiusBottomStart="28dp"
-            app:boxCornerRadiusTopEnd="28dp"
-            app:boxCornerRadiusTopStart="28dp"
-            app:boxStrokeColor="@color/primary_pink"
-            app:counterEnabled="true"
-            app:counterMaxLength="40"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/primary_pink"
-            app:layout_constraintTop_toBottomOf="@+id/til_description">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/expense_cost"
+                android:hint="@string/input_name"
                 android:maxLength="40" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
-            android:id="@+id/rg_expenseType"
+            android:id="@+id/rg_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            app:layout_constraintStart_toStartOf="@+id/til_cost"
-            app:layout_constraintTop_toBottomOf="@+id/til_cost">
+            app:layout_constraintStart_toStartOf="@+id/til_name"
+            app:layout_constraintTop_toBottomOf="@+id/til_name">
 
             <RadioButton
-                android:id="@+id/rbBill"
+                android:id="@+id/rbMale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bill" />
+                android:text="@string/male" />
 
             <RadioButton
-                android:id="@+id/rbShopping"
+                android:id="@+id/rbFemale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/shopping" />
+                android:text="@string/female" />
 
             <RadioButton
                 android:id="@+id/rbOther"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/other" />
+                android:text="@string/dont_want_to_indicate" />
         </RadioGroup>
 
-        <RadioGroup
-            android:id="@+id/expenseCurrency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="48dp"
-            android:layout_marginTop="36dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/rg_expenseType"
-            app:layout_constraintTop_toBottomOf="@+id/rg_expenseType">
-
-            <RadioButton
-                android:id="@+id/rbTl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_tl" />
-
-            <RadioButton
-                android:id="@+id/rbDl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_dolar" />
-
-            <RadioButton
-                android:id="@+id/rbEu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_euro" />
-
-            <RadioButton
-                android:id="@+id/rbSt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_sterlin" />
-        </RadioGroup>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add"
@@ -166,11 +104,11 @@
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_add"
-            android:text="@string/ekle"
+            android:text="@string/save"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/expenseCurrency"
-            app:layout_constraintTop_toBottomOf="@+id/expenseCurrency" />
+            app:layout_constraintEnd_toEndOf="@+id/til_name"
+            app:layout_constraintTop_toBottomOf="@+id/rg_gender" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

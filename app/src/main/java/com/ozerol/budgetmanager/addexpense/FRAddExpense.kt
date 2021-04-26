@@ -30,7 +30,7 @@ class FRAddExpense : Fragment() {
         val frAddExpenseViewModel =
             ViewModelProvider(this,viewModelFactory).get(FRAddExpenseViewModel::class.java)
 
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         binding.frAddExpenseViewModel=frAddExpenseViewModel
 
 

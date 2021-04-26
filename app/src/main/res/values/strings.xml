@@ -16,4 +16,10 @@
     <string name="bill">Fatura</string>
     <string name="shopping">Alışveriş</string>
     <string name="other">Diğer</string>
+    <string name="change_name">İsim Değiştir</string>
+    <string name="input_name">İsim Giriniz</string>
+    <string name="male">Erkek</string>
+    <string name="female">Kadın</string>
+    <string name="dont_want_to_indicate">Belirtmek İstemiyorum</string>
+    <string name="save">Kaydet</string>
 </resources>

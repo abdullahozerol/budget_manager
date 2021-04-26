@@ -31,13 +31,20 @@ class FRHome : Fragment() {
         val frHomeViewModel =
             ViewModelProvider(this, viewModelFactory).get(FRHomeViewModel::class.java)
 
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         binding.frHomeViewModel = frHomeViewModel
 
         frHomeViewModel.toAddExpense.observe(viewLifecycleOwner, Observer {
             if(it==true){
                 this.findNavController()
                     .navigate(FRHomeDirections.actionFRHomeToFRAddExpense())
+            }
+        })
+
+        frHomeViewModel.toProfile.observe(viewLifecycleOwner, Observer {
+            if (it==true){
+                this.findNavController()
+                    .navigate(FRHomeDirections.actionFRHomeToFRProfile())
             }
         })
 

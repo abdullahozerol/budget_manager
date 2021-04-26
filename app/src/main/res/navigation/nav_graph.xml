@@ -10,27 +10,44 @@
         android:id="@+id/FRHome"
         android:name="com.ozerol.budgetmanager.home.FRHome"
         android:label="fr_home"
-        tools:layout="@layout/fr_home" >
-
+        tools:layout="@layout/fr_home">
         <action
             android:id="@+id/action_FRHome_to_FRAddExpense"
             app:destination="@id/FRAddExpense"
             app:enterAnim="@anim/anim_swipe_page"
-            app:popEnterAnim="@anim/anim_swipe_page"/>
+            app:popEnterAnim="@anim/anim_swipe_page" />
+        <action
+            android:id="@+id/action_FRHome_to_FRProfile"
+            app:destination="@id/FRProfile"
+            app:enterAnim="@anim/anim_swipe_page"
+            app:popEnterAnim="@anim/anim_swipe_page" />
     </fragment>
 
     <fragment
         android:id="@+id/FRAddExpense"
         android:name="com.ozerol.budgetmanager.addexpense.FRAddExpense"
-        android:label="FRAddExpense" >
-
+        android:label="FRAddExpense"
+        tools:layout="@layout/fr_add_expense">
         <action
             android:id="@+id/action_FRAddExpense_to_FRHome"
             app:destination="@id/FRHome"
-            app:popUpTo="@id/FRHome"
-            app:popUpToInclusive="true"
             app:enterAnim="@anim/anim_swipe_page"
-            app:popEnterAnim="@anim/anim_swipe_page" />
+            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popUpTo="@id/FRHome"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FRProfile"
+        android:name="com.ozerol.budgetmanager.profile.FRProfile"
+        android:label="FRProfile"
+        tools:layout="@layout/fr_profile">
+        <action
+            android:id="@+id/action_FRProfile_to_FRHome"
+            app:destination="@id/FRHome"
+            app:enterAnim="@anim/anim_swipe_page"
+            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

@@ -3,7 +3,7 @@ package com.ozerol.budgetmanager
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.ozerol.budgetmanager.database.ExpanseDatabase
+import com.ozerol.budgetmanager.database.ExpenseDatabase
 import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.ExpenseDao
 import kotlinx.coroutines.runBlocking
@@ -18,13 +18,13 @@ import kotlin.jvm.Throws
 @RunWith(AndroidJUnit4::class) //Bunun ile çalışacak.
 class DatabaseTest {
     private lateinit var expenseDao: ExpenseDao
-    private lateinit var expenseDatabase: ExpanseDatabase
+    private lateinit var expenseDatabase: ExpenseDatabase
 
     @Before
     fun createDatabase() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-        expenseDatabase = Room.inMemoryDatabaseBuilder(context, ExpanseDatabase::class.java)
+        expenseDatabase = Room.inMemoryDatabaseBuilder(context, ExpenseDatabase::class.java)
             .allowMainThreadQueries()
             .build()
         expenseDao = expenseDatabase.expenseDao

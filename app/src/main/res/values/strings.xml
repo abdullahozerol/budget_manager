@@ -5,4 +5,15 @@
     <string name="sterlin">STERLIN</string>
     <string name="euro">EURO</string>
     <string name="dolar">DOLAR</string>
+    <string name="s_tl">TL</string>
+    <string name="s_sterlin">Sterlin</string>
+    <string name="s_euro">Euro</string>
+    <string name="s_dolar">Dolar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_expense">Harcama Ekle</string>
+    <string name="expense_description">Açıklama</string>
+    <string name="expense_cost">Harcama</string>
+    <string name="bill">Fatura</string>
+    <string name="shopping">Alışveriş</string>
+    <string name="other">Diğer</string>
 </resources>

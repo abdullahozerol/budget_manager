@@ -98,7 +98,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_add"
+            android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginTop="24dp"

@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/tv_profile"
+                android:id="@+id/tvHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -43,7 +43,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/toolbar" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_description"
+            android:id="@+id/tilDescription"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/expense_description"
@@ -69,7 +70,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_cost"
+            android:id="@+id/tilCost"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,9 +85,10 @@
             app:counterMaxLength="40"
             app:endIconMode="clear_text"
             app:hintTextColor="@color/primary_pink"
-            app:layout_constraintTop_toBottomOf="@+id/til_description">
+            app:layout_constraintTop_toBottomOf="@+id/tilDescription">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/expense_cost"
@@ -94,12 +96,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
-            android:id="@+id/rg_expenseType"
+            android:id="@+id/rgExpenseType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            app:layout_constraintStart_toStartOf="@+id/til_cost"
-            app:layout_constraintTop_toBottomOf="@+id/til_cost">
+            app:layout_constraintStart_toStartOf="@+id/tilCost"
+            app:layout_constraintTop_toBottomOf="@+id/tilCost">
 
             <RadioButton
                 android:id="@+id/rbBill"
@@ -121,14 +123,14 @@
         </RadioGroup>
 
         <RadioGroup
-            android:id="@+id/expenseCurrency"
+            android:id="@+id/rgExpenseCurrency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="48dp"
             android:layout_marginTop="36dp"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/rg_expenseType"
-            app:layout_constraintTop_toBottomOf="@+id/rg_expenseType">
+            app:layout_constraintStart_toStartOf="@+id/rgExpenseType"
+            app:layout_constraintTop_toBottomOf="@+id/rgExpenseType">
 
             <RadioButton
                 android:id="@+id/rbTl"
@@ -160,7 +162,7 @@
         </RadioGroup>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_add"
+            android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginTop="24dp"
@@ -169,8 +171,8 @@
             android:text="@string/ekle"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/expenseCurrency"
-            app:layout_constraintTop_toBottomOf="@+id/expenseCurrency" />
+            app:layout_constraintEnd_toEndOf="@+id/rgExpenseCurrency"
+            app:layout_constraintTop_toBottomOf="@+id/rgExpenseCurrency" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

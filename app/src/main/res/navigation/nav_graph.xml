@@ -28,6 +28,10 @@
         android:name="com.ozerol.budgetmanager.addexpense.FRAddExpense"
         android:label="FRAddExpense"
         tools:layout="@layout/fr_add_expense">
+        <argument
+            android:name="KEY_EXPENSE"
+            app:argType="long" />
+
         <action
             android:id="@+id/action_FRAddExpense_to_FRHome"
             app:destination="@id/FRHome"

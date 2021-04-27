@@ -9,7 +9,7 @@ data class Expense(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
     @ColumnInfo(name = "image_category")
-    var imageCategory: String = "",
+    var imageCategory: Int = 0,
     @ColumnInfo(name = "description")
     var description: String = "",
     @ColumnInfo(name = "cost")

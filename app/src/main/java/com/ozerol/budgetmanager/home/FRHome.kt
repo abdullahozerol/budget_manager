@@ -40,7 +40,7 @@ class FRHome : Fragment() {
         frHomeViewModel.toAddExpense.observe(viewLifecycleOwner, Observer {
             if(it==true){
                 this.findNavController()
-                    .navigate(FRHomeDirections.actionFRHomeToFRAddExpense())
+                    .navigate(FRHomeDirections.actionFRHomeToFRAddExpense(1))
             }
         })
 

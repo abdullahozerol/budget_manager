@@ -10,7 +10,7 @@ import com.ozerol.budgetmanager.database.ExpenseDao
 class FRHomeViewModel(private val expenseData: ExpenseDao, private val app: Application) :
     AndroidViewModel(app) {
     private var myExpense = MutableLiveData<Expense?>()
-    private val allExpense = expenseData.readAll()
+    val allExpense = expenseData.readAll()
 
     private val _toAddExpense = MutableLiveData<Boolean?>()
     val toAddExpense: LiveData<Boolean?>

@@ -133,20 +133,13 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_expenses"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_currencies">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_spending"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll_currencies" />
-        </androidx.core.widget.NestedScrollView>
-
+            app:layout_constraintTop_toBottomOf="@+id/ll_currencies" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btn_fab"

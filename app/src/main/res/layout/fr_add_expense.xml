@@ -37,142 +37,159 @@
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@android:color/darker_gray"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilDescription"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="36dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginRight="36dp"
-            app:boxCornerRadiusBottomEnd="28dp"
-            app:boxCornerRadiusBottomStart="28dp"
-            app:boxCornerRadiusTopEnd="28dp"
-            app:boxCornerRadiusTopStart="28dp"
-            app:boxStrokeColor="@color/primary_pink"
-            app:counterEnabled="true"
-            app:counterMaxLength="40"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/primary_pink"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDescription"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/expense_description"
-                android:maxLength="40" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:paddingBottom="48dp"
+                android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilCost"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            app:boxCornerRadiusBottomEnd="28dp"
-            app:boxCornerRadiusBottomStart="28dp"
-            app:boxCornerRadiusTopEnd="28dp"
-            app:boxCornerRadiusTopStart="28dp"
-            app:boxStrokeColor="@color/primary_pink"
-            app:counterEnabled="true"
-            app:counterMaxLength="40"
-            app:endIconMode="clear_text"
-            app:hintTextColor="@color/primary_pink"
-            app:layout_constraintTop_toBottomOf="@+id/tilDescription">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDescription"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginRight="36dp"
+                    app:boxCornerRadiusBottomEnd="28dp"
+                    app:boxCornerRadiusBottomStart="28dp"
+                    app:boxCornerRadiusTopEnd="28dp"
+                    app:boxCornerRadiusTopStart="28dp"
+                    app:boxStrokeColor="@color/primary_pink"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="40"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="@color/primary_pink"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/expense_cost"
-                android:maxLength="40" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/expense_description"
+                        android:maxLength="40" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioGroup
-            android:id="@+id/rgExpenseType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            app:layout_constraintStart_toStartOf="@+id/tilCost"
-            app:layout_constraintTop_toBottomOf="@+id/tilCost">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCost"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginRight="36dp"
+                    app:boxCornerRadiusBottomEnd="28dp"
+                    app:boxCornerRadiusBottomStart="28dp"
+                    app:boxCornerRadiusTopEnd="28dp"
+                    app:boxCornerRadiusTopStart="28dp"
+                    app:boxStrokeColor="@color/primary_pink"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="40"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="@color/primary_pink"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDescription">
 
-            <RadioButton
-                android:id="@+id/rbBill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/bill" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/expense_cost"
+                        android:maxLength="40" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <RadioButton
-                android:id="@+id/rbShopping"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/shopping" />
+                <RadioGroup
+                    android:id="@+id/rgExpenseType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    app:layout_constraintStart_toStartOf="@+id/tilCost"
+                    app:layout_constraintTop_toBottomOf="@+id/tilCost">
 
-            <RadioButton
-                android:id="@+id/rbOther"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/other" />
-        </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/rbBill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bill" />
 
-        <RadioGroup
-            android:id="@+id/rgExpenseCurrency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="48dp"
-            android:layout_marginTop="36dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/rgExpenseType"
-            app:layout_constraintTop_toBottomOf="@+id/rgExpenseType">
+                    <RadioButton
+                        android:id="@+id/rbShopping"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shopping" />
 
-            <RadioButton
-                android:id="@+id/rbTl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_tl" />
+                    <RadioButton
+                        android:id="@+id/rbOther"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/other" />
+                </RadioGroup>
 
-            <RadioButton
-                android:id="@+id/rbDl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_dolar" />
+                <RadioGroup
+                    android:id="@+id/rgExpenseCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="36dp"
+                    android:layout_marginTop="36dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/rgExpenseType">
 
-            <RadioButton
-                android:id="@+id/rbEu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_euro" />
+                    <RadioButton
+                        android:id="@+id/rbTl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/s_tl" />
 
-            <RadioButton
-                android:id="@+id/rbSt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/s_sterlin" />
-        </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/rbDl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/s_dolar" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:layout_marginTop="24dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn_add"
-            android:text="@string/ekle"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/rgExpenseCurrency"
-            app:layout_constraintTop_toBottomOf="@+id/rgExpenseCurrency" />
+                    <RadioButton
+                        android:id="@+id/rbEu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/s_euro" />
+
+                    <RadioButton
+                        android:id="@+id/rbSt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/s_sterlin" />
+                </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_add"
+                    android:text="@string/ekle"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/rgExpenseCurrency"
+                    app:layout_constraintTop_toBottomOf="@+id/rgExpenseCurrency" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

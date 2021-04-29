@@ -13,7 +13,7 @@ data class Expense(
     @ColumnInfo(name = "description")
     var description: String = "",
     @ColumnInfo(name = "cost")
-    var cost: Double = 0.0,
+    var cost: Long = 0L,
     @ColumnInfo(name = "currency")
     var currency: String = ""
 

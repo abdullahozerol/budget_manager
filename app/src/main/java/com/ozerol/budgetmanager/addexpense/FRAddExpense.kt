@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.database.ExpenseDatabase
 import com.ozerol.budgetmanager.databinding.FrAddExpenseBinding
-import com.ozerol.budgetmanager.home.FRHomeDirections
 
 class FRAddExpense : Fragment() {
     override fun onCreateView(
@@ -34,13 +33,19 @@ class FRAddExpense : Fragment() {
         binding.lifecycleOwner = this
         binding.frAddExpenseViewModel = frAddExpenseViewModel
 
-        frAddExpenseViewModel.toAddExpense.observe(viewLifecycleOwner, Observer { expense ->
-            expense?.let{
+        frAddExpenseViewModel.toHome.observe(viewLifecycleOwner, Observer {
+            if (it==true) {
                 this.findNavController()
-                    .navigate(FRHomeDirections.actionFRHomeToFRAddExpense(expense.id))
+                    .navigate(FRAddExpenseDirections.actionFRAddExpenseToFRHome())
             }
         })
 
+//        frAddExpenseViewModel.toAddExpense.observe(viewLifecycleOwner, Observer { expense ->
+//            expense?.let{
+//                this.findNavController()
+//                    .navigate(FRAddExpenseDirections.actionFRAddExpenseToFRHome())
+//            }
+//        })
         return binding.root
     }
 }

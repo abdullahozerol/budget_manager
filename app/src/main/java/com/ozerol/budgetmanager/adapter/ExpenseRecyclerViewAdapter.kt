@@ -22,7 +22,7 @@ class ClickWatcher(val clickWatcher: (expenseId: Long) -> Unit) {
     fun clicked(expense: Expense) = clickWatcher(expense.id)
 }
 
-class ExpenseRecyclerViewAdapter(val clickWatcher: ClickWatcher) :
+class ExpenseRecyclerViewAdapter(private val clickWatcher: ClickWatcher) :
     ListAdapter<Expense, ExpenseRecyclerViewAdapter.ViewHolder>(ExpenseRecyclerViewCallBack()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,

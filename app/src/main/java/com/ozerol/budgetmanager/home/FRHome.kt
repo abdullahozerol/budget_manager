@@ -37,11 +37,11 @@ class FRHome : Fragment() {
         binding.lifecycleOwner = this
         binding.frHomeViewModel = frHomeViewModel
 
-        frHomeViewModel.toAddExpense.observe(viewLifecycleOwner, Observer {
-            if(it==true){
-                this.findNavController()
-                    .navigate(FRHomeDirections.actionFRHomeToFRAddExpense(1))
-            }
+        frHomeViewModel.myExpense.observe(viewLifecycleOwner, Observer { expense ->
+
+            this.findNavController()
+                .navigate(FRHomeDirections.actionFRHomeToFRAddExpense(expense?.id!!))
+
         })
 
         frHomeViewModel.toProfile.observe(viewLifecycleOwner, Observer {

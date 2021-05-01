@@ -45,6 +45,14 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
         _selectExpenseType.postValue(R.id.rbOther)
     }
 
+    private val _selectCurrency = MutableLiveData<Int>()
+    val selectCurrency: MutableLiveData<Int>
+        get() = _selectCurrency
+
+    init {
+        _selectCurrency.postValue(R.id.rbTl)
+    }
+
 
     fun onAddButtonClick() {
         viewModelScope.launch {
@@ -61,6 +69,19 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
                     newExpense.imageCategory = "shopping"
                 }
                 else -> newExpense.imageCategory = "other"
+            }
+
+            when (this@FRAddExpenseViewModel._selectCurrency.value) {
+                R.id.rbTl -> {
+                    newExpense.currency = "TL"
+                }
+                R.id.rbSt -> {
+                    newExpense.currency = "STERLIN"
+                }
+                R.id.rbEu -> {
+                    newExpense.currency = "EURO"
+                }
+                else -> newExpense.currency = "DOLAR"
             }
 
             expenseData.create(newExpense)

@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/add_expense"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/dark_gray_7"
                 android:textSize="24sp" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -54,8 +54,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:paddingBottom="48dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="48dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilDescription"
@@ -78,11 +78,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etDescription"
-                        android:text="@={frAddExpenseViewModel.description}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/expense_description"
-                        android:maxLength="40" />
+                        android:maxLength="40"
+                        android:text="@={frAddExpenseViewModel.description}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -98,24 +98,26 @@
                     app:boxCornerRadiusTopStart="28dp"
                     app:boxStrokeColor="@color/primary_pink"
                     app:counterEnabled="true"
-                    app:counterMaxLength="40"
+                    app:counterMaxLength="5"
                     app:endIconMode="clear_text"
                     app:hintTextColor="@color/primary_pink"
                     app:layout_constraintTop_toBottomOf="@+id/tilDescription">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etCost"
-                        android:text="@={frAddExpenseViewModel.cost}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/expense_cost"
-                        android:maxLength="40" />
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text="@={frAddExpenseViewModel.cost}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <RadioGroup
                     android:id="@+id/rgExpenseType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@={frAddExpenseViewModel.selectExpenseType}"
                     android:layout_marginTop="36dp"
                     app:layout_constraintStart_toStartOf="@+id/tilCost"
                     app:layout_constraintTop_toBottomOf="@+id/tilCost">
@@ -183,8 +185,8 @@
                     android:layout_height="36dp"
                     android:layout_marginTop="24dp"
                     android:layout_weight="1"
-                    android:onClick="@{()->frAddExpenseViewModel.onAddButtonClick()}"
                     android:background="@drawable/bg_btn_add"
+                    android:onClick="@{()->frAddExpenseViewModel.onAddButtonClick()}"
                     android:text="@string/ekle"
                     android:textColor="@color/white"
                     android:textSize="16sp"

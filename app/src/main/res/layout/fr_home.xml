@@ -100,6 +100,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_currencies"
                 android:text="@string/tl"
+                android:textColor="@color/dark_gray_7"
                 android:textSize="11sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -110,6 +111,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_currencies"
                 android:text="@string/sterlin"
+                android:textColor="@color/dark_gray_7"
                 android:textSize="11sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -120,6 +122,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_currencies"
                 android:text="@string/euro"
+                android:textColor="@color/dark_gray_7"
                 android:textSize="11sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -130,6 +133,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_btn_currencies"
                 android:text="@string/dolar"
+                android:textColor="@color/dark_gray_7"
                 android:textSize="11sp" />
         </LinearLayout>
 
@@ -137,6 +141,9 @@
             android:id="@+id/rv_expenses"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_currencies" />

@@ -7,5 +7,5 @@
         android:width="1dp"
         android:color="@color/primary_pink" />
     <solid
-        android:color="@color/cream_0"/>
+        android:color="@color/white"/>
 </shape>

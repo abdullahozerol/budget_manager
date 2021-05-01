@@ -1,13 +1,19 @@
 package com.ozerol.budgetmanager.addexpense
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.ExpenseDao
 import kotlinx.coroutines.launch
+
+enum class ExpenseType(val value: Byte) {
+    BILL(0),
+    SHOPPING(1),
+    OTHER(2),
+}
 
 class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expenseData: ExpenseDao) :
     ViewModel() {
@@ -31,29 +37,37 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
     val toAddExpense: LiveData<Expense?>
         get() = _toAddExpenseToHome
 
-//    fun addExpenses(imageCategory: Int, description: String, cost: Double) {
-//        viewModelScope.launch {
-//            val expense = expenseData.read(expenseId) ?: return@launch
-//            expense.imageCategory = imageCategory
-//            expense.description = description
-//            expense.cost = cost
-//
-//            expenseData.update(expense)
-//
-//            _toHome.value = true
-//        }
-//    }
+    private val _selectExpenseType = MutableLiveData<Int>()
+    val selectExpenseType: MutableLiveData<Int>
+        get() = _selectExpenseType
+
+    init {
+        _selectExpenseType.postValue(R.id.rbOther)
+    }
+
 
     fun onAddButtonClick() {
         viewModelScope.launch {
             val newExpense = Expense()
-      //      expense.imageCategory = imageCategory
+            //      expense.imageCategory = imageCategory
             newExpense.description = description.toString()
             newExpense.cost = cost?.toLong()!!
+
+            when (this@FRAddExpenseViewModel._selectExpenseType.value) {
+                R.id.rbBill -> {
+                    newExpense.imageCategory = "bill"
+                }
+                R.id.rbShopping -> {
+                    newExpense.imageCategory = "shopping"
+                }
+                else -> newExpense.imageCategory = "other"
+            }
 
             expenseData.create(newExpense)
 
             _toHome.value = true
         }
     }
+
+
 }

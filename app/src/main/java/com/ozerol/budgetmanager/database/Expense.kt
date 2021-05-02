@@ -15,6 +15,8 @@ data class Expense(
     @ColumnInfo(name = "cost")
     var cost: Long = 0L,
     @ColumnInfo(name = "currency")
-    var currency: String = ""
+    var currency: String = "",
+    @ColumnInfo(name = "total_cost")
+    var total: Long = 0L
 
 )

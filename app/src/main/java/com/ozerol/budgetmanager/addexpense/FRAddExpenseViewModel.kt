@@ -9,12 +9,6 @@ import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.ExpenseDao
 import kotlinx.coroutines.launch
 
-enum class ExpenseType(val value: Byte) {
-    BILL(0),
-    SHOPPING(1),
-    OTHER(2),
-}
-
 class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expenseData: ExpenseDao) :
     ViewModel() {
 
@@ -25,7 +19,6 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
     val myExpense: LiveData<Expense?>
         get() = _myExpense
 
-    var imageCategory: Int = 0
     var description: String? = null
     var cost: String? = null
 
@@ -60,6 +53,7 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
             //      expense.imageCategory = imageCategory
             newExpense.description = description.toString()
             newExpense.cost = cost?.toLong()!!
+            newExpense.total = expenseData.getTotalExpense()?.plus(newExpense.cost) ?: newExpense.cost
 
             when (this@FRAddExpenseViewModel._selectExpenseType.value) {
                 R.id.rbBill -> {
@@ -85,6 +79,7 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
             }
 
             expenseData.create(newExpense)
+            expenseData.update(newExpense)
 
             _toHome.value = true
         }

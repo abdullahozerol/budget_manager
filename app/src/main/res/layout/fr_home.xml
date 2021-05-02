@@ -6,6 +6,9 @@
     <data>
 
         <variable
+            name="expense"
+            type="com.ozerol.budgetmanager.database.Expense" />
+        <variable
             name="frHomeViewModel"
             type="com.ozerol.budgetmanager.home.FRHomeViewModel" />
     </data>
@@ -60,7 +63,7 @@
                     tools:text="Abdullah" />
 
                 <TextView
-                    android:id="@+id/tv_total_expenditure_text"
+                    android:id="@+id/tv_total_expense_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="28dp"
@@ -71,15 +74,16 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_profile_text" />
 
                 <TextView
-                    android:id="@+id/tv_total_expenditure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_total_expense"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
                     android:layout_marginTop="2dp"
+                    android:text=""
+                    app:tvTotalExpense="@{expense}"
                     android:textColor="@color/white"
                     android:textSize="24sp"
-                    app:layout_constraintStart_toStartOf="@+id/tv_total_expenditure_text"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_total_expenditure_text"
-                    tools:text="9999 TL" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_total_expense_text"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_expense_text" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

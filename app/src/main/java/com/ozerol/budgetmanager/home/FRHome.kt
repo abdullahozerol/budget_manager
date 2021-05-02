@@ -27,6 +27,7 @@ class FRHome : Fragment() {
         val binding: FrHomeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fr_home, container, false)
 
+//        val args = FRHomeArgs.fromBundle(requireArguments())
         val app = requireNotNull(this.activity).application
         val expenseData = ExpenseDatabase.getSample(app).expenseDao
 
@@ -45,19 +46,19 @@ class FRHome : Fragment() {
         })
 
         frHomeViewModel.toProfile.observe(viewLifecycleOwner, Observer {
-            if (it==true){
+            if (it == true) {
                 this.findNavController()
                     .navigate(FRHomeDirections.actionFRHomeToFRProfile())
             }
         })
 
-        val adapter = ExpenseRecyclerViewAdapter( ClickWatcher { expenseId ->
-            Toast.makeText(context,"$expenseId", Toast.LENGTH_SHORT).show()
-        } )
-        binding.rvExpenses.adapter =adapter
+        val adapter = ExpenseRecyclerViewAdapter(ClickWatcher { expenseId ->
+            Toast.makeText(context, "$expenseId", Toast.LENGTH_SHORT).show()
+        })
+        binding.rvExpenses.adapter = adapter
 
-        frHomeViewModel.allExpense.observe(viewLifecycleOwner, Observer{
-            it?.let{
+        frHomeViewModel.allExpense.observe(viewLifecycleOwner, Observer {
+            it?.let {
                 adapter.submitList(it)
             }
         })

@@ -40,12 +40,7 @@ class FRAddExpense : Fragment() {
             }
         })
 
-//        frAddExpenseViewModel.toAddExpense.observe(viewLifecycleOwner, Observer { expense ->
-//            expense?.let{
-//                this.findNavController()
-//                    .navigate(FRAddExpenseDirections.actionFRAddExpenseToFRHome())
-//            }
-//        })
+
         return binding.root
     }
 }

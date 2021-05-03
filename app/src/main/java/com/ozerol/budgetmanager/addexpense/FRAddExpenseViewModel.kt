@@ -53,7 +53,8 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
             //      expense.imageCategory = imageCategory
             newExpense.description = description.toString()
             newExpense.cost = cost?.toLong()!!
-            newExpense.total = expenseData.getTotalExpense()?.plus(newExpense.cost) ?: newExpense.cost
+            newExpense.total =
+                expenseData.getTotalExpense()?.plus(newExpense.cost) ?: newExpense.cost
 
             when (this@FRAddExpenseViewModel._selectExpenseType.value) {
                 R.id.rbBill -> {

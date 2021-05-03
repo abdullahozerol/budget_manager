@@ -22,4 +22,5 @@
     <string name="female">Kadın</string>
     <string name="dont_want_to_indicate">Belirtmek İstemiyorum</string>
     <string name="save">Kaydet</string>
+    <string name="delete">SİL</string>
 </resources>

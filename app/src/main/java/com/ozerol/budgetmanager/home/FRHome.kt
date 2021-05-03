@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -38,11 +37,11 @@ class FRHome : Fragment() {
         binding.lifecycleOwner = this
         binding.frHomeViewModel = frHomeViewModel
 
-        frHomeViewModel.myExpense.observe(viewLifecycleOwner, Observer { expense ->
-
-            this.findNavController()
-                .navigate(FRHomeDirections.actionFRHomeToFRAddExpense(expense?.id!!))
-
+        frHomeViewModel.toAddExpense.observe(viewLifecycleOwner, Observer { expense ->
+            expense?.let {
+                this.findNavController()
+                    .navigate(FRHomeDirections.actionFRHomeToFRAddExpense(expense.id))
+            }
         })
 
         frHomeViewModel.toProfile.observe(viewLifecycleOwner, Observer {
@@ -53,9 +52,17 @@ class FRHome : Fragment() {
         })
 
         val adapter = ExpenseRecyclerViewAdapter(ClickWatcher { expenseId ->
-            Toast.makeText(context, "$expenseId", Toast.LENGTH_SHORT).show()
+            frHomeViewModel.clickDetail(expenseId)
         })
         binding.rvExpenses.adapter = adapter
+
+        frHomeViewModel.toDetails.observe(viewLifecycleOwner, Observer { expenseId ->
+            expenseId?.let {
+                this.findNavController()
+                    .navigate(FRHomeDirections.actionFRHomeToFRDetailExpense2(expenseId))
+            }
+        })
+
 
         frHomeViewModel.allExpense.observe(viewLifecycleOwner, Observer {
             it?.let {

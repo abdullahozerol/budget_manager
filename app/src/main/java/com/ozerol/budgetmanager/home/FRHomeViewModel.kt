@@ -13,31 +13,37 @@ class FRHomeViewModel(private val expenseData: ExpenseDao, app: Application) :
     var cost: String? = null
     val allExpense = expenseData.readAll()
 
-    private var _myExpense = MutableLiveData<Expense?>()
-    val myExpense: LiveData<Expense?>
-        get() = _myExpense
-
-    private val _toAddExpense = MutableLiveData<Boolean?>()
-    val toAddExpense: LiveData<Boolean?>
+    private var _toAddExpense = MutableLiveData<Expense?>()
+    val toAddExpense: LiveData<Expense?>
         get() = _toAddExpense
 
     private val _toProfile = MutableLiveData<Boolean?>()
     val toProfile: LiveData<Boolean?>
         get() = _toProfile
 
+    private val _toDetails = MutableLiveData<Long?>()
+    val toDetails
+        get() = _toDetails
+
+
     private val _totalExpense = MutableLiveData<Long?>()
     val totalExpense: LiveData<Long?>
         get() = _totalExpense
 
 
+
     fun clickAddExpense() {
         //      _toAddExpense.value = true
-        _myExpense.value = Expense()
+        _toAddExpense.value = Expense()
 
     }
 
     fun clickProfile() {
         _toProfile.value = true
+    }
+
+    fun clickDetail(id: Long) {
+        _toDetails.value = id
     }
 
 //    suspend fun totalExpense(): Long {

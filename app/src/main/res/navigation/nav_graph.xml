@@ -15,12 +15,23 @@
             android:id="@+id/action_FRHome_to_FRAddExpense"
             app:destination="@id/FRAddExpense"
             app:enterAnim="@anim/anim_swipe_page"
-            app:popEnterAnim="@anim/anim_swipe_page" />
+            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popUpTo="@id/FRHome"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_FRHome_to_FRProfile"
             app:destination="@id/FRProfile"
             app:enterAnim="@anim/anim_swipe_page"
-            app:popEnterAnim="@anim/anim_swipe_page" />
+            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popUpTo="@id/FRHome"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_FRHome_to_FRDetailExpense2"
+            app:destination="@id/FRDetailExpense"
+            app:enterAnim="@anim/anim_swipe_page"
+            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popUpTo="@id/FRHome"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -36,6 +47,7 @@
             android:id="@+id/action_FRAddExpense_to_FRHome"
             app:destination="@id/FRHome"
             app:enterAnim="@anim/anim_swipe_page"
+            app:launchSingleTop="false"
             app:popEnterAnim="@anim/anim_swipe_page"
             app:popUpTo="@id/FRHome"
             app:popUpToInclusive="true" />
@@ -50,8 +62,28 @@
             android:id="@+id/action_FRProfile_to_FRHome"
             app:destination="@id/FRHome"
             app:enterAnim="@anim/anim_swipe_page"
+            app:launchSingleTop="false"
             app:popEnterAnim="@anim/anim_swipe_page"
+            app:popUpTo="@id/FRHome"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FRDetailExpense"
+        android:name="com.ozerol.budgetmanager.detailexpense.FRDetailExpense"
+        android:label="fr_detail_expense"
+        tools:layout="@layout/fr_detail_expense">
+        <action
+            android:id="@+id/action_FRDetailExpense_to_FRHome"
+            app:destination="@id/FRHome"
+            app:enterAnim="@anim/anim_swipe_page"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popUpTo="@id/FRHome"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="KEY_EXPENSE"
+            app:argType="long" />
     </fragment>
 
 </navigation>

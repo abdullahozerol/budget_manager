@@ -14,6 +14,9 @@ interface ExpenseDao {
     @Query("SELECT * FROM expense_table WHERE id= :idNo")
     suspend fun read(idNo: Long): Expense?
 
+    @Query("SELECT * FROM expense_table WHERE id= :idNo")
+    fun readWithId(idNo: Long): LiveData<Expense?> //asenkron olarak değil normal faksiyon. Datası liveDataya atılıyor.
+
     @Query("SELECT * FROM expense_table ORDER BY id DESC LIMIT 1")
     suspend fun readLast(): Expense?
 
@@ -34,6 +37,8 @@ interface ExpenseDao {
 
     @Query("SELECT * FROM expense_table ORDER BY id DESC LIMIT 1")
     suspend fun getTotal():Expense?
+
+
 
 
 }

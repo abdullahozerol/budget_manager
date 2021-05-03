@@ -10,7 +10,9 @@ class HomeBindingAdapter {
         @BindingAdapter("app:tvTotalExpense")
         @JvmStatic
         fun TextView.setTvTotalExpense(expense: Expense?) {
-            text = expense?.total.toString()
+            expense?.let {
+                text = expense.total.toString()
+            }
         }
     }
 }

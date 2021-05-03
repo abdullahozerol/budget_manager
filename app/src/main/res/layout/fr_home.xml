@@ -6,9 +6,6 @@
     <data>
 
         <variable
-            name="expense"
-            type="com.ozerol.budgetmanager.database.Expense" />
-        <variable
             name="frHomeViewModel"
             type="com.ozerol.budgetmanager.home.FRHomeViewModel" />
     </data>
@@ -79,7 +76,6 @@
                     android:layout_height="32dp"
                     android:layout_marginTop="2dp"
                     android:text=""
-                    app:tvTotalExpense="@{expense}"
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="@+id/tv_total_expense_text"

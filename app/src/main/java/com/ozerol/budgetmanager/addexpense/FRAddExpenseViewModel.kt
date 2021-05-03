@@ -86,5 +86,8 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
         }
     }
 
+    fun clickBack(){
+        _toHome.value=true
+    }
 
 }

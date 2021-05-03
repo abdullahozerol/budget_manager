@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.addexpense.FRAddExpenseDirections
 import com.ozerol.budgetmanager.database.ExpenseDatabase
 import com.ozerol.budgetmanager.databinding.FrProfileBinding
+import com.ozerol.budgetmanager.detailexpense.FRDetailExpenseDirections
 
 class FRProfile : Fragment() {
 
@@ -34,6 +36,13 @@ class FRProfile : Fragment() {
 
         binding.lifecycleOwner = this
         binding.frProfileViewModel = frProfileViewModel
+
+        frProfileViewModel.toHome.observe(viewLifecycleOwner, Observer {
+            if (it==true){
+                this.findNavController()
+                    .navigate(FRProfileDirections.actionFRProfileToFRHome())
+            }
+        })
 
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {

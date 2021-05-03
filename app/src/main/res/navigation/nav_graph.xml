@@ -46,9 +46,9 @@
         <action
             android:id="@+id/action_FRAddExpense_to_FRHome"
             app:destination="@id/FRHome"
-            app:enterAnim="@anim/anim_swipe_page"
+            app:enterAnim="@anim/anim_swipe_page_right"
             app:launchSingleTop="false"
-            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popEnterAnim="@anim/anim_swipe_page_right"
             app:popUpTo="@id/FRHome"
             app:popUpToInclusive="true" />
     </fragment>
@@ -61,9 +61,9 @@
         <action
             android:id="@+id/action_FRProfile_to_FRHome"
             app:destination="@id/FRHome"
-            app:enterAnim="@anim/anim_swipe_page"
+            app:enterAnim="@anim/anim_swipe_page_right"
             app:launchSingleTop="false"
-            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popEnterAnim="@anim/anim_swipe_page_right"
             app:popUpTo="@id/FRHome"
             app:popUpToInclusive="true" />
     </fragment>
@@ -76,9 +76,9 @@
         <action
             android:id="@+id/action_FRDetailExpense_to_FRHome"
             app:destination="@id/FRHome"
-            app:enterAnim="@anim/anim_swipe_page"
+            app:enterAnim="@anim/anim_swipe_page_right"
             app:launchSingleTop="false"
-            app:popEnterAnim="@anim/anim_swipe_page"
+            app:popEnterAnim="@anim/anim_swipe_page_right"
             app:popUpTo="@id/FRHome"
             app:popUpToInclusive="true" />
         <argument

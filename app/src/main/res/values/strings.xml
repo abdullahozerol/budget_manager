@@ -23,4 +23,6 @@
     <string name="dont_want_to_indicate">Belirtmek İstemiyorum</string>
     <string name="save">Kaydet</string>
     <string name="delete">SİL</string>
+    <string name="total_expense">Harcamanız</string>
+    <string name="hello">Merhaba</string>
 </resources>

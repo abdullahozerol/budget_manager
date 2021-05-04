@@ -5,8 +5,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.database.Expense
+import com.ozerol.budgetmanager.database.Profile
 
-class ExpenseBindingAdapter {
+class BindingAdapter {
 
 
     companion object {
@@ -40,6 +41,27 @@ class ExpenseBindingAdapter {
                 text = expense.cost.toString()
             }
         }
+
+        @BindingAdapter("app:tvTotalExpense")
+        @JvmStatic
+        fun TextView.setTvTotalExpense(expense: Expense?) {
+            expense?.let {
+                text = expense.total.toString()
+            }
+        }
+
+        @BindingAdapter("app:tvName")
+        @JvmStatic
+        fun TextView.setTvName(profile: Profile?) {
+            profile?.let {
+                when (profile.gender) {
+                    "male" -> text = profile.name + " Bey"
+                    "female" -> text = profile.name + " Hanım"
+                    else -> text = profile.name
+                }
+            }
+        }
+
 
     }
 }

@@ -12,23 +12,12 @@ import kotlinx.coroutines.launch
 class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expenseData: ExpenseDao) :
     ViewModel() {
 
-
-    val allExpense = expenseData.readAll()
-
-    private var _myExpense = MutableLiveData<Expense?>()
-    val myExpense: LiveData<Expense?>
-        get() = _myExpense
-
     var description: String? = null
     var cost: String? = null
 
     private val _toHome = MutableLiveData<Boolean?>()
     val toHome: LiveData<Boolean?>
         get() = _toHome
-
-    private val _toAddExpenseToHome = MutableLiveData<Expense?>()
-    val toAddExpense: LiveData<Expense?>
-        get() = _toAddExpenseToHome
 
     private val _selectExpenseType = MutableLiveData<Int>()
     val selectExpenseType: MutableLiveData<Int>
@@ -50,7 +39,6 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
     fun onAddButtonClick() {
         viewModelScope.launch {
             val newExpense = Expense()
-            //      expense.imageCategory = imageCategory
             newExpense.description = description.toString()
             newExpense.cost = cost?.toLong()!!
             newExpense.total =
@@ -80,7 +68,6 @@ class FRAddExpenseViewModel(private val expenseId: Long = 0L, private val expens
             }
 
             expenseData.create(newExpense)
-            expenseData.update(newExpense)
 
             _toHome.value = true
         }

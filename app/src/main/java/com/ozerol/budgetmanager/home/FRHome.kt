@@ -14,6 +14,7 @@ import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.adapter.ClickWatcher
 import com.ozerol.budgetmanager.adapter.ExpenseRecyclerViewAdapter
 import com.ozerol.budgetmanager.database.ExpenseDatabase
+import com.ozerol.budgetmanager.database.ProfileDatabase
 import com.ozerol.budgetmanager.databinding.FrHomeBinding
 
 class FRHome : Fragment() {
@@ -29,8 +30,9 @@ class FRHome : Fragment() {
 //        val args = FRHomeArgs.fromBundle(requireArguments())
         val app = requireNotNull(this.activity).application
         val expenseData = ExpenseDatabase.getSample(app).expenseDao
+        val profileData = ProfileDatabase.getSample(app).profileDao
 
-        val viewModelFactory = FRHomeViewModelFactory(expenseData, app)
+        val viewModelFactory = FRHomeViewModelFactory(expenseData,profileData, app)
         val frHomeViewModel =
             ViewModelProvider(this, viewModelFactory).get(FRHomeViewModel::class.java)
 

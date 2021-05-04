@@ -39,7 +39,7 @@ interface ExpenseDao {
     suspend fun getTotalExpense():Long?
 
     @Query("SELECT * FROM expense_table ORDER BY id DESC LIMIT 1")
-    suspend fun getTotal():Expense?
+    fun getTotal(): LiveData<Expense?>
 
 
 

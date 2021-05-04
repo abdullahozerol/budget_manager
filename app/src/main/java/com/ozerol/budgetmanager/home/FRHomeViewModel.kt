@@ -6,12 +6,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.ExpenseDao
+import com.ozerol.budgetmanager.database.ProfileDao
 
-class FRHomeViewModel(private val expenseData: ExpenseDao, app: Application) :
+class FRHomeViewModel(private val expenseData: ExpenseDao, private val profileData: ProfileDao, app: Application) :
     AndroidViewModel(app) {
 
     var cost: String? = null
     val allExpense = expenseData.readAll()
+    val totalExpense = expenseData.getTotal()
+    val lastProfile = profileData.readLast()
+
 
     private var _toAddExpense = MutableLiveData<Expense?>()
     val toAddExpense: LiveData<Expense?>
@@ -24,13 +28,6 @@ class FRHomeViewModel(private val expenseData: ExpenseDao, app: Application) :
     private val _toDetails = MutableLiveData<Long?>()
     val toDetails
         get() = _toDetails
-
-
-    private val _totalExpense = MutableLiveData<Long?>()
-    val totalExpense: LiveData<Long?>
-        get() = _totalExpense
-
-
 
     fun clickAddExpense() {
         //      _toAddExpense.value = true

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.addexpense.FRAddExpenseDirections
 import com.ozerol.budgetmanager.database.ExpenseDatabase
+import com.ozerol.budgetmanager.database.ProfileDatabase
 import com.ozerol.budgetmanager.databinding.FrProfileBinding
 import com.ozerol.budgetmanager.detailexpense.FRDetailExpenseDirections
 
@@ -28,9 +29,9 @@ class FRProfile : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fr_profile, container, false)
 
         val app = requireNotNull(this.activity).application
-        val expenseData = ExpenseDatabase.getSample(app).expenseDao
+        val profileData = ProfileDatabase.getSample(app).profileDao
 
-        val viewModelFactory = FRProfileViewModelFactory(expenseData, app)
+        val viewModelFactory = FRProfileViewModelFactory(profileData, app)
         val frProfileViewModel =
             ViewModelProvider(this, viewModelFactory).get(FRProfileViewModel::class.java)
 

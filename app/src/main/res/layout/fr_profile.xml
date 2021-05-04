@@ -69,7 +69,7 @@
             app:boxCornerRadiusTopStart="28dp"
             app:boxStrokeColor="@color/primary_pink"
             app:counterEnabled="true"
-            app:counterMaxLength="40"
+            app:counterMaxLength="20"
             app:endIconMode="clear_text"
             app:hintTextColor="@color/primary_pink"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -78,14 +78,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/input_name"
-                android:maxLength="40" />
+                android:maxLength="20"
+                android:text="@={frProfileViewModel.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
-            android:id="@+id/rg_gender"
+            android:id="@+id/rgGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
+            android:checkedButton="@={frProfileViewModel.selectGender}"
             app:layout_constraintStart_toStartOf="@+id/til_name"
             app:layout_constraintTop_toBottomOf="@+id/til_name">
 
@@ -102,7 +104,7 @@
                 android:text="@string/female" />
 
             <RadioButton
-                android:id="@+id/rbOther"
+                android:id="@+id/rbNoGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dont_want_to_indicate" />
@@ -117,10 +119,11 @@
             android:layout_weight="1"
             android:background="@drawable/bg_btn_add"
             android:text="@string/save"
+            android:onClick="@{() -> frProfileViewModel.onSaveProfile()}"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/til_name"
-            app:layout_constraintTop_toBottomOf="@+id/rg_gender" />
+            app:layout_constraintTop_toBottomOf="@+id/rgGender" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,9 @@ interface ExpenseDao {
     @Insert
     suspend fun create(expense: Expense) //suspend: asenkron olarak çalıştırır.
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun createAll(expense: List<Expense>)
+
     @Query("SELECT * FROM expense_table ORDER BY id DESC") //ters sıralama DESC
     fun readAll(): LiveData<List<Expense>>
 

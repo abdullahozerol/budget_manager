@@ -1,7 +1,9 @@
 package com.ozerol.budgetmanager.home
 
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +19,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.adapter.ClickWatcher
 import com.ozerol.budgetmanager.adapter.ExpenseRecyclerViewAdapter
@@ -34,6 +38,7 @@ import java.util.*
 
 
 class FRHome : Fragment() {
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
@@ -66,7 +71,16 @@ class FRHome : Fragment() {
         if (networkInfo != null && networkInfo.isConnected) {
             frHomeViewModel.getData()
         } else {
-            Toast.makeText(activity, "İnternet bağlantınız bulunmamaktadır.", Toast.LENGTH_SHORT)
+            Snackbar.make(
+                requireActivity().findViewById(android.R.id.content),
+                ("İnternet bağlantınız bulunmamaktadır."),
+                Snackbar.LENGTH_LONG,)
+                .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                .setBackgroundTint(Color.parseColor("#D4C1A1"))
+                .setAction("Tamam"){
+                    Toast.makeText(activity,"İnternet bağlantınızı kontrol ediniz.",Toast.LENGTH_SHORT).show()
+                }
+                .setActionTextColor(Color.parseColor("#99052D"))
                 .show()
         }
 

@@ -1,6 +1,7 @@
 package com.ozerol.budgetmanager.addexpense
 
 import android.content.Context
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.database.ExpenseDatabase
 import com.ozerol.budgetmanager.database.LastCurrencyDatabase
@@ -36,7 +39,6 @@ class FRAddExpense : Fragment() {
         val lastCurrencyData=LastCurrencyDatabase.getSample(app).lastCurrencyDao
         val repository = Repository()
 
-
         val viewModelFactory = FRAddExpenseViewModelFactory(repository,args.keyexpense, expenseData, lastCurrencyData)
         val frAddExpenseViewModel =
             ViewModelProvider(this, viewModelFactory).get(FRAddExpenseViewModel::class.java)
@@ -44,8 +46,6 @@ class FRAddExpense : Fragment() {
         binding.lifecycleOwner = this
         binding.frAddExpenseViewModel = frAddExpenseViewModel
 
-
-    //    frAddExpenseViewModel.downloadCurrencyData()
         frAddExpenseViewModel.toHome.observe(viewLifecycleOwner, Observer {
             if (it==true) {
                 this.findNavController()
@@ -53,14 +53,22 @@ class FRAddExpense : Fragment() {
             }
         })
 
-//        frAddExpenseViewModel.getData()
-//        frAddExpenseViewModel.myResponse.observe(viewLifecycleOwner, Observer { response->
-//            if (response.isSuccessful) {
-//                Log.d("res", response.body()?.rates?.USD.toString())
-//
-//            }else
-//                Log.d("res",response.errorBody().toString())
-//        })
+        frAddExpenseViewModel.showSnackBar.observe((viewLifecycleOwner), Observer {
+            if(it==true){
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    ("Açıklama ve harcama bilgileri boş bırakılamaz"),
+                    Snackbar.LENGTH_LONG,)
+                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                    .setBackgroundTint(Color.parseColor("#D4C1A1"))
+                    .setAction("Tamam"){
+                        Toast.makeText(activity,"Harcama ekleyebilmek için gerekli bilgileri giriniz.",Toast.LENGTH_SHORT).show()
+                    }
+                    .setActionTextColor(Color.parseColor("#99052D"))
+                    .show()
+                frAddExpenseViewModel.snackBarShown()
+            }
+        })
 
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
@@ -70,6 +78,17 @@ class FRAddExpense : Fragment() {
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+
+//        frAddExpenseViewModel.downloadCurrencyData()
+
+//        frAddExpenseViewModel.getData()
+//        frAddExpenseViewModel.myResponse.observe(viewLifecycleOwner, Observer { response->
+//            if (response.isSuccessful) {
+//                Log.d("res", response.body()?.rates?.USD.toString())
+//
+//            }else
+//                Log.d("res",response.errorBody().toString())
+//        })
 
         return binding.root
     }

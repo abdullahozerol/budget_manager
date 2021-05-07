@@ -1,9 +1,13 @@
 package com.ozerol.budgetmanager.addexpense
 
+import android.graphics.Color
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.ExpenseDao
@@ -56,12 +60,19 @@ class FRAddExpenseViewModel(
 
     val myResponse = MutableLiveData<Response<Currencies?>>()
 
+    private var _showSnackBar = MutableLiveData<Boolean>()
+    val showSnackBar: LiveData<Boolean>
+        get() = _showSnackBar
+
+    fun snackBarShown() {
+        _showSnackBar.value = false
+    }
 
     fun onAddButtonClick() {
 
         viewModelScope.launch {
 
-            if(cost!=null){
+            if(cost!=null && description!=null){
                 val df = DecimalFormat("###.##", DecimalFormatSymbols(Locale.ENGLISH))
                     .apply {
                         roundingMode = RoundingMode.HALF_UP
@@ -208,6 +219,8 @@ class FRAddExpenseViewModel(
                 expenseData.create(newExpense)
 
                 _toHome.value = true
+            }else{
+                _showSnackBar.value = true
             }
         }
     }

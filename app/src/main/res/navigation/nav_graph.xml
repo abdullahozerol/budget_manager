@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FRHome">
+    app:startDestination="@id/FRSplash">
 
 
     <fragment
@@ -85,5 +85,33 @@
             android:name="KEY_EXPENSE"
             app:argType="long" />
     </fragment>
+     <fragment
+        android:id="@+id/FRSplash"
+        tools:layout="@layout/fr_splash"
+        android:name="com.ozerol.budgetmanager.splash.FRSplash"
+        android:label="FRSplash" >
+         <action
+             android:id="@+id/action_FRSplash_to_FROnBoardingViewPager"
+             app:destination="@id/FROnBoardingViewPager"
+             app:popUpTo="@id/FRSplash"
+             app:popUpToInclusive="true" />
+         <action
+             android:id="@+id/action_FRSplash_to_FRHome"
+             app:destination="@id/FRHome"
+             app:popUpTo="@id/FRSplash"
+             app:popUpToInclusive="true" />
+     </fragment>
+    <fragment
+        android:id="@+id/FROnBoardingViewPager"
+        android:name="com.ozerol.budgetmanager.onboarding.FROnBoardingViewPager"
+        android:label="fr_on_boarding_view_pager"
+        tools:layout="@layout/fr_on_boarding_view_pager" >
+        <action
+            android:id="@+id/action_FROnBoardingViewPager_to_FRHome"
+            app:destination="@id/FRHome"
+            app:popUpTo="@id/FROnBoardingViewPager"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 
 </navigation>

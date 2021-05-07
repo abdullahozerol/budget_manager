@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream_1"
-    tools:context=".splash.ACSplash">
+    tools:context=".onboarding.FROnBoardingViewPager">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/avBudget"
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="false"
-        app:lottie_rawRes="@raw/lottie_budget_manager" />
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

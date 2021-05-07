@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream_0"
+    tools:context=".onboarding.screens.FROnBoardingFirst">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/avOnBoardingFirst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/lottie_budget_manager_onboarding_first" />
+
+    <TextView
+        android:id="@+id/tvOnBoardingTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:gravity="center"
+        android:text="@string/onboarding_first_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avOnBoardingFirst" />
+
+    <TextView
+        android:id="@+id/tvOnBoarding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/onboarding_first_text"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvOnBoardingTitle" />
+
+    <TextView
+        android:id="@+id/btnSkip"
+        android:layout_width="84dp"
+        android:layout_height="36dp"
+        android:layout_margin="36dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:background="@drawable/bg_btn_on_boarding"
+        android:text="@string/gec"
+        android:textColor="@color/primary_pink"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

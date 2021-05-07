@@ -25,4 +25,12 @@
     <string name="delete">SİL</string>
     <string name="total_expense">Harcamanız</string>
     <string name="hello">Merhaba</string>
+    <string name="onboarding_first_title">Bütçeni Yönet</string>
+    <string name="onboarding_first_text">Harcamalarını takip et.</string>
+    <string name="gec">Geç</string>
+    <string name="onboarding_second_title">Farklı Para Birimleriyle Takip Et</string>
+    <string name="onboarding_second_text">Harcamalarınızı TL, Dolar, Euro ve Sterlin para birimleriyle sürekli güncellenen kurla takip edin.</string>
+    <string name="onboarding_third_title">Kolayca Kategorilendir</string>
+    <string name="onboarding_third_text">Harcamalarınız kategorilendirerek daha kolay takip edin.</string>
+    <string name="bitir">Bitir</string>
 </resources>

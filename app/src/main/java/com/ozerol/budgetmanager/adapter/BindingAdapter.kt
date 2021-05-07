@@ -8,8 +8,6 @@ import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.Profile
 
 class BindingAdapter {
-
-
     companion object {
         @BindingAdapter("imExpenseType")
         @JvmStatic
@@ -38,7 +36,7 @@ class BindingAdapter {
         @JvmStatic
         fun TextView.setTvCost(expense: Expense?) {
             expense?.let {
-                text = expense.cost.toString()
+                text = expense.cost.toString() + expense.currency
             }
         }
 
@@ -46,7 +44,7 @@ class BindingAdapter {
         @JvmStatic
         fun TextView.setTvTotalExpense(expense: Expense?) {
             expense?.let {
-                text = expense.total.toString()
+                text = expense.total.toString() + expense.currency
             }
         }
 
@@ -54,10 +52,10 @@ class BindingAdapter {
         @JvmStatic
         fun TextView.setTvName(profile: Profile?) {
             profile?.let {
-                when (profile.gender) {
-                    "male" -> text = profile.name + " Bey"
-                    "female" -> text = profile.name + " Hanım"
-                    else -> text = profile.name
+                text = when (profile.gender) {
+                    "male" -> profile.name + " Bey"
+                    "female" -> profile.name + " Hanım"
+                    else -> profile.name
                 }
             }
         }

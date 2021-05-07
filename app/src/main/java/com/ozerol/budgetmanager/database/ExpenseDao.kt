@@ -35,11 +35,24 @@ interface ExpenseDao {
     @Delete
     suspend fun delete(expense: Expense)
 
+    @Query("SELECT * FROM expense_table ORDER BY id DESC LIMIT 1")
+    fun getTotal(): LiveData<Expense?>
+
     @Query("SELECT SUM(cost) FROM expense_table")
     suspend fun getTotalExpense():Long?
 
-    @Query("SELECT * FROM expense_table ORDER BY id DESC LIMIT 1")
-    fun getTotal(): LiveData<Expense?>
+    @Query("SELECT SUM(tlCost) FROM expense_table")
+    suspend fun getTotalExpenseTl():Double?
+
+    @Query("SELECT SUM(stCost) FROM expense_table")
+    suspend fun getTotalExpenseSt():Double?
+
+    @Query("SELECT SUM(euCost) FROM expense_table")
+    suspend fun getTotalExpenseEu():Double?
+
+    @Query("SELECT SUM(dlCost) FROM expense_table")
+    suspend fun getTotalExpenseDl():Double?
+
 
 
 

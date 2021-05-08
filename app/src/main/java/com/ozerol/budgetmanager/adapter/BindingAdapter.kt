@@ -9,6 +9,7 @@ import com.ozerol.budgetmanager.database.Profile
 
 class BindingAdapter {
     companion object {
+
         @BindingAdapter("imExpenseType")
         @JvmStatic
         fun ImageView.setImExpenseType(expense: Expense?) {
@@ -30,7 +31,6 @@ class BindingAdapter {
                 text = expense.description
             }
         }
-
 
         @BindingAdapter("app:tvCost")
         @JvmStatic
@@ -59,7 +59,5 @@ class BindingAdapter {
                 }
             }
         }
-
-
     }
 }

@@ -39,22 +39,18 @@ interface ExpenseDao {
     fun getTotal(): LiveData<Expense?>
 
     @Query("SELECT SUM(cost) FROM expense_table")
-    suspend fun getTotalExpense():Long?
+    suspend fun getTotalExpense(): Long?
 
     @Query("SELECT SUM(tlCost) FROM expense_table")
-    suspend fun getTotalExpenseTl():Double?
+    suspend fun getTotalExpenseTl(): Double?
 
     @Query("SELECT SUM(stCost) FROM expense_table")
-    suspend fun getTotalExpenseSt():Double?
+    suspend fun getTotalExpenseSt(): Double?
 
     @Query("SELECT SUM(euCost) FROM expense_table")
-    suspend fun getTotalExpenseEu():Double?
+    suspend fun getTotalExpenseEu(): Double?
 
     @Query("SELECT SUM(dlCost) FROM expense_table")
-    suspend fun getTotalExpenseDl():Double?
-
-
-
-
+    suspend fun getTotalExpenseDl(): Double?
 
 }

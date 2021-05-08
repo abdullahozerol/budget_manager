@@ -9,7 +9,6 @@ import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.ExpenseDao
 import com.ozerol.budgetmanager.database.LastCurrencyDao
 import com.ozerol.budgetmanager.service.Repository
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -25,9 +24,8 @@ class FRAddExpenseViewModel(
 ) :
     ViewModel() {
 
-
-    private var job: Job? = null
-    private val lastCurrencies = lastCurrencyData.getLast()
+//    private var job: Job? = null
+//    private val lastCurrencies = lastCurrencyData.getLast()
 
     var description: String? = null
     var cost: String? = null
@@ -61,9 +59,7 @@ class FRAddExpenseViewModel(
     }
 
     fun onAddButtonClick() {
-
         viewModelScope.launch {
-
             if (cost != null && description != null) {
                 val df = DecimalFormat("###.##", DecimalFormatSymbols(Locale.ENGLISH))
                     .apply {
@@ -93,7 +89,6 @@ class FRAddExpenseViewModel(
                         newExpense.currency = " ₺"
                         newExpense.cost = cost?.toDoubleOrNull()!!
                         newExpense.tlCost = cost?.toDoubleOrNull()!!
-
                         newExpense.euCost = df.format(cost?.toDouble()!! / toTry!!).toDouble()
                         newExpense.dlCost =
                             df.format((cost?.toDouble()!! / toTry!!) * toUsd!!).toDouble()
@@ -105,7 +100,6 @@ class FRAddExpenseViewModel(
                         newExpense.currency = " £"
                         newExpense.cost = cost?.toDoubleOrNull()!!
                         newExpense.stCost = cost?.toDoubleOrNull()!!
-
                         newExpense.euCost = df.format(cost?.toDouble()!! / toGbp!!).toDouble()
                         newExpense.dlCost =
                             df.format((cost?.toDouble()!! / toGbp!!) * toUsd!!).toDouble()
@@ -116,7 +110,6 @@ class FRAddExpenseViewModel(
                         newExpense.currency = " $"
                         newExpense.cost = cost?.toDoubleOrNull()!!
                         newExpense.dlCost = cost?.toDoubleOrNull()!!
-
                         newExpense.euCost = df.format(cost?.toDouble()!! / toUsd!!).toDouble()
                         newExpense.stCost =
                             df.format((cost?.toDouble()!! / toUsd!!) * toGbp!!).toDouble()
@@ -127,7 +120,6 @@ class FRAddExpenseViewModel(
                         newExpense.currency = " €"
                         newExpense.cost = cost?.toDoubleOrNull()!!
                         newExpense.euCost = cost?.toDoubleOrNull()!!
-
                         newExpense.stCost = df.format(cost?.toDouble()!! * toGbp!!).toDouble()
                         newExpense.dlCost = df.format(cost?.toDouble()!! * toUsd!!).toDouble()
                         newExpense.tlCost = df.format(cost?.toDouble()!! * toTry!!).toDouble()
@@ -157,8 +149,12 @@ class FRAddExpenseViewModel(
                 _showSnackBar.value = true
             }
         }
-
     }
+
+    fun clickBack() {
+        _toHome.value = true
+    }
+
     // Alternatif retrofit bağlama
 //    fun downloadCurrencyData() {
 //        viewModelScope.launch {
@@ -186,9 +182,4 @@ class FRAddExpenseViewModel(
 //        super.onCleared()
 //        job?.cancel()
 //    }
-
-    fun clickBack() {
-        _toHome.value = true
-    }
-
 }

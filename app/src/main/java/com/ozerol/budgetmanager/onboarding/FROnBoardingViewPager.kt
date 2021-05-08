@@ -1,10 +1,10 @@
 package com.ozerol.budgetmanager.onboarding
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.onboarding.screens.FROnBoardingFirst
 import com.ozerol.budgetmanager.onboarding.screens.FROnBoardingSecond
@@ -17,8 +17,8 @@ class FROnBoardingViewPager : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view= inflater.inflate(R.layout.fr_on_boarding_view_pager, container, false)
+
+        val view = inflater.inflate(R.layout.fr_on_boarding_view_pager, container, false)
 
         val fragmenList = arrayListOf<Fragment>(
             FROnBoardingFirst(),
@@ -27,13 +27,11 @@ class FROnBoardingViewPager : Fragment() {
         )
 
         val adapter = OnBoardingViewPagerAdapter(
-            fragmenList,requireActivity().supportFragmentManager,lifecycle
+            fragmenList, requireActivity().supportFragmentManager, lifecycle
         )
 
-        view.viewPager.adapter=adapter
+        view.viewPager.adapter = adapter
 
         return view
     }
-
-
 }

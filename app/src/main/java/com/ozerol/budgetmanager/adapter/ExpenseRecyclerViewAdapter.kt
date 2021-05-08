@@ -32,15 +32,15 @@ class ExpenseRecyclerViewAdapter(private val clickWatcher: ClickWatcher) :
     }
 
     override fun onBindViewHolder(holder: ExpenseRecyclerViewAdapter.ViewHolder, position: Int) {
-        val item =getItem(position)
-        holder.bind(item,clickWatcher)
+        val item = getItem(position)
+        holder.bind(item, clickWatcher)
     }
 
     class ViewHolder private constructor(private val binding: ItemExpenseBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Expense, clickWatcher: ClickWatcher) {
-            binding.expense=item
+            binding.expense = item
             binding.executePendingBindings()
             binding.clickWatcher = clickWatcher
         }

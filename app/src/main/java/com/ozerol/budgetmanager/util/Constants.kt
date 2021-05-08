@@ -1,7 +1,7 @@
 package com.ozerol.budgetmanager.util
 
 class Constants {
-    companion object{
+    companion object {
         const val BASE_URL = "http://data.fixer.io/api/"
     }
 }

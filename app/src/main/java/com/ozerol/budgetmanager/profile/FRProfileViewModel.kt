@@ -27,24 +27,38 @@ class FRProfileViewModel(private val profileData: ProfileDao, private val app: A
         _selectGender.postValue(R.id.rbNoGender)
     }
 
+    private var _showSnackBar = MutableLiveData<Boolean>()
+    val showSnackBar: LiveData<Boolean>
+        get() = _showSnackBar
+
+    fun snackBarShown() {
+        _showSnackBar.value = false
+    }
+
+
     fun onSaveProfile() {
         viewModelScope.launch {
-            val newProfile = Profile()
-            newProfile.name = name.toString()
+            if (name!=null){
+                val newProfile = Profile()
+                newProfile.name = name.toString()
 
-            when (_selectGender.value) {
-                R.id.rbMale -> {
-                    newProfile.gender = "male"
+                when (_selectGender.value) {
+                    R.id.rbMale -> {
+                        newProfile.gender = "male"
+                    }
+                    R.id.rbFemale -> {
+                        newProfile.gender = "female"
+                    }
+                    else -> newProfile.gender = "nogender"
                 }
-                R.id.rbFemale -> {
-                    newProfile.gender = "female"
-                }
-                else -> newProfile.gender = "nogender"
+
+                profileData.create(newProfile)
+
+                _toHome.value = true
             }
-
-            profileData.create(newProfile)
-
-            _toHome.value = true
+            else{
+                _showSnackBar.value = true
+            }
         }
     }
 

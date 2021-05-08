@@ -35,10 +35,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
 
-
 class FRHome : Fragment() {
-
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,20 +61,23 @@ class FRHome : Fragment() {
 
         val connMgr = activity
             ?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
         val networkInfo = connMgr.activeNetworkInfo
-
         if (networkInfo != null && networkInfo.isConnected) {
             frHomeViewModel.getData()
         } else {
             Snackbar.make(
                 requireActivity().findViewById(android.R.id.content),
                 ("İnternet bağlantınız bulunmamaktadır."),
-                Snackbar.LENGTH_LONG,)
+                Snackbar.LENGTH_LONG,
+            )
                 .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
                 .setBackgroundTint(Color.parseColor("#D4C1A1"))
-                .setAction("Tamam"){
-                    Toast.makeText(activity,"İnternet bağlantınızı kontrol ediniz.",Toast.LENGTH_SHORT).show()
+                .setAction("Tamam") {
+                    Toast.makeText(
+                        activity,
+                        "İnternet bağlantınızı kontrol ediniz.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 .setActionTextColor(Color.parseColor("#99052D"))
                 .show()
@@ -161,13 +161,15 @@ class FRHome : Fragment() {
                                         it[i].currency = it[i].icTl
                                     }
                                     adapter.notifyDataSetChanged()
-                                    frHomeViewModel.totalExpense.observe(viewLifecycleOwner, Observer {
-                                        it?.let {
-                                            it.total = it.totalTl
-                                            it.currency = it.icTl
-                                            binding.invalidateAll()
-                                        }
-                                    })
+                                    frHomeViewModel.totalExpense.observe(
+                                        viewLifecycleOwner,
+                                        Observer {
+                                            it?.let {
+                                                it.total = it.totalTl
+                                                it.currency = it.icTl
+                                                binding.invalidateAll()
+                                            }
+                                        })
                                 }
                             })
                             binding.invalidateAll()

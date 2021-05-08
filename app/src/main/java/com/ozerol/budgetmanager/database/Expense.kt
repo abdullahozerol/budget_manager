@@ -47,5 +47,4 @@ data class Expense(
     @ColumnInfo(name = "eu")
     var icEu: String = " €"
 
-
 )

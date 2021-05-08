@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ozerol.budgetmanager.R
-import com.ozerol.budgetmanager.addexpense.FRAddExpenseDirections
 import com.ozerol.budgetmanager.database.ExpenseDatabase
 import com.ozerol.budgetmanager.databinding.FrDetailExpenseBinding
 
@@ -32,13 +31,14 @@ class FRDetailExpense : Fragment() {
             FRDetailExpenseViewModelFactory(args.keyexpense, expenseData)
         val frDetailExpenseViewModel = ViewModelProvider(
             this,
-            frDetailExpenseViewModelFactory).get(FRDetailExpenseViewModel::class.java)
+            frDetailExpenseViewModelFactory
+        ).get(FRDetailExpenseViewModel::class.java)
 
         binding.lifecycleOwner = this
         binding.frDetailExpenseViewModel = frDetailExpenseViewModel
 
         frDetailExpenseViewModel.toHome.observe(viewLifecycleOwner, Observer {
-            if (it==true){
+            if (it == true) {
                 this.findNavController()
                     .navigate(FRDetailExpenseDirections.actionFRDetailExpenseToFRHome())
             }

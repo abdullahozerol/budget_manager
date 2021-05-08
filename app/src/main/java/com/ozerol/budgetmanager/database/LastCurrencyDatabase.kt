@@ -13,10 +13,10 @@ abstract class LastCurrencyDatabase : RoomDatabase() {
         @Volatile // RAM'de tutulacağını gösterir
         private var sampleObject: LastCurrencyDatabase? = null
 
-        fun getSample(context : Context): LastCurrencyDatabase {
-            synchronized(this){
+        fun getSample(context: Context): LastCurrencyDatabase {
+            synchronized(this) {
                 var sample = sampleObject
-                if (sample==null){
+                if (sample == null) {
                     sample = Room.databaseBuilder(
                         context.applicationContext,
                         LastCurrencyDatabase::class.java,

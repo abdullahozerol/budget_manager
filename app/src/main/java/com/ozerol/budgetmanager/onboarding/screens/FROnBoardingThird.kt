@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.ozerol.budgetmanager.R
-import kotlinx.android.synthetic.main.fr_on_boarding_first.view.*
 import kotlinx.android.synthetic.main.fr_on_boarding_third.view.*
 
 class FROnBoardingThird : Fragment() {
@@ -24,17 +22,17 @@ class FROnBoardingThird : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         view.btnFinish.setOnClickListener {
-           findNavController().navigate(R.id.action_FROnBoardingViewPager_to_FRHome)
+            findNavController().navigate(R.id.action_FROnBoardingViewPager_to_FRHome)
             onBoardingFinish()
         }
 
         return view
     }
 
-    private fun onBoardingFinish(){
+    private fun onBoardingFinish() {
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
-        editor.putBoolean("Finished",true)
+        editor.putBoolean("Finished", true)
         editor.apply()
     }
 }

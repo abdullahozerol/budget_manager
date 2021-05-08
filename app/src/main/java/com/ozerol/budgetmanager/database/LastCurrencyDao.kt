@@ -27,13 +27,13 @@ interface LastCurrencyDao {
     fun getLast(): LiveData<LastCurrency?>
 
     @Query("SELECT savedTl FROM currency_table")
-    suspend fun getSavedTl():Double?
+    suspend fun getSavedTl(): Double?
 
     @Query("SELECT savedDl FROM currency_table")
-    suspend fun getSavedDl():Double?
+    suspend fun getSavedDl(): Double?
 
     @Query("SELECT savedSt FROM currency_table")
-    suspend fun getSavedSt():Double?
+    suspend fun getSavedSt(): Double?
 
     @Update
     suspend fun update(lastCurrency: LastCurrency)

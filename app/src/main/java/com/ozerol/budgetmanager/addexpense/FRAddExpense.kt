@@ -1,10 +1,7 @@
 package com.ozerol.budgetmanager.addexpense
 
-import android.content.Context
 import android.graphics.Color
-import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +19,6 @@ import com.ozerol.budgetmanager.database.ExpenseDatabase
 import com.ozerol.budgetmanager.database.LastCurrencyDatabase
 import com.ozerol.budgetmanager.databinding.FrAddExpenseBinding
 import com.ozerol.budgetmanager.service.Repository
-import kotlin.math.log
 
 class FRAddExpense : Fragment() {
     override fun onCreateView(
@@ -36,10 +32,11 @@ class FRAddExpense : Fragment() {
         val args = FRAddExpenseArgs.fromBundle(requireArguments())
         val app = requireNotNull(this.activity).application
         val expenseData = ExpenseDatabase.getSample(app).expenseDao
-        val lastCurrencyData=LastCurrencyDatabase.getSample(app).lastCurrencyDao
+        val lastCurrencyData = LastCurrencyDatabase.getSample(app).lastCurrencyDao
         val repository = Repository()
 
-        val viewModelFactory = FRAddExpenseViewModelFactory(repository,args.keyexpense, expenseData, lastCurrencyData)
+        val viewModelFactory =
+            FRAddExpenseViewModelFactory(repository, args.keyexpense, expenseData, lastCurrencyData)
         val frAddExpenseViewModel =
             ViewModelProvider(this, viewModelFactory).get(FRAddExpenseViewModel::class.java)
 
@@ -47,22 +44,27 @@ class FRAddExpense : Fragment() {
         binding.frAddExpenseViewModel = frAddExpenseViewModel
 
         frAddExpenseViewModel.toHome.observe(viewLifecycleOwner, Observer {
-            if (it==true) {
+            if (it == true) {
                 this.findNavController()
                     .navigate(FRAddExpenseDirections.actionFRAddExpenseToFRHome())
             }
         })
 
         frAddExpenseViewModel.showSnackBar.observe((viewLifecycleOwner), Observer {
-            if(it==true){
+            if (it == true) {
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
-                    ("Açıklama ve harcama bilgileri boş bırakılamaz"),
-                    Snackbar.LENGTH_LONG,)
+                    ("Açıklama ve harcama bilgileri boş bırakılamaz."),
+                    Snackbar.LENGTH_LONG,
+                )
                     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
                     .setBackgroundTint(Color.parseColor("#D4C1A1"))
-                    .setAction("Tamam"){
-                        Toast.makeText(activity,"Harcama ekleyebilmek için gerekli bilgileri giriniz.",Toast.LENGTH_SHORT).show()
+                    .setAction("Tamam") {
+                        Toast.makeText(
+                            activity,
+                            "Harcama ekleyebilmek için gerekli bilgileri giriniz.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     .setActionTextColor(Color.parseColor("#99052D"))
                     .show()

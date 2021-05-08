@@ -13,10 +13,10 @@ abstract class ProfileDatabase : RoomDatabase() {
         @Volatile // RAM'de tutulacağını gösterir
         private var sampleObject: ProfileDatabase? = null
 
-        fun getSample(context : Context): ProfileDatabase {
-            synchronized(this){
+        fun getSample(context: Context): ProfileDatabase {
+            synchronized(this) {
                 var sample = sampleObject
-                if (sample==null){
+                if (sample == null) {
                     sample = Room.databaseBuilder(
                         context.applicationContext,
                         ProfileDatabase::class.java,

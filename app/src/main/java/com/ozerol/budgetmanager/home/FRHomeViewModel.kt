@@ -1,12 +1,7 @@
 package com.ozerol.budgetmanager.home
 
 import android.app.Application
-import android.app.Service
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.util.Log
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +17,13 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 @Suppress("DEPRECATION")
-class FRHomeViewModel(private val repository: Repository, private val expenseData: ExpenseDao, private val profileData: ProfileDao, private  val lastCurrencyData: LastCurrencyDao, app: Application) :
+class FRHomeViewModel(
+    private val repository: Repository,
+    private val expenseData: ExpenseDao,
+    private val profileData: ProfileDao,
+    private val lastCurrencyData: LastCurrencyDao,
+    app: Application
+) :
     AndroidViewModel(app) {
 
     var cost: String? = null
@@ -58,14 +59,13 @@ class FRHomeViewModel(private val repository: Repository, private val expenseDat
             val response = repository.getData("35c35c8d7bece1ddd065206c796b1411")
             if (response.isSuccessful) {
                 myResponse.value = response
-            }else Log.d("response: ",response.errorBody().toString())
+            } else Log.d("response: ", response.errorBody().toString())
 
         }
     }
 
     fun clickAddExpense() {
         _toAddExpense.value = Expense()
-
     }
 
     fun clickProfile() {
@@ -75,5 +75,4 @@ class FRHomeViewModel(private val repository: Repository, private val expenseDat
     fun clickDetail(id: Long) {
         _toDetails.value = id
     }
-
 }

@@ -60,7 +60,7 @@ class FRAddExpenseViewModel(
 
     fun onAddButtonClick() {
         viewModelScope.launch {
-            if (cost != null && description != null) {
+            if (cost != null && cost != "" && cost != " " && cost!="0" && description != null && description != "" && description != " ") {
                 val df = DecimalFormat("###.##", DecimalFormatSymbols(Locale.ENGLISH))
                     .apply {
                         roundingMode = RoundingMode.HALF_UP

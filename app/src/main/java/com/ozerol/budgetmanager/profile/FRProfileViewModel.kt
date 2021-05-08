@@ -38,7 +38,7 @@ class FRProfileViewModel(private val profileData: ProfileDao, private val app: A
 
     fun onSaveProfile() {
         viewModelScope.launch {
-            if (name!=null){
+            if (name != null && name != "" && name != " ") {
                 val newProfile = Profile()
                 newProfile.name = name.toString()
 
@@ -55,8 +55,7 @@ class FRProfileViewModel(private val profileData: ProfileDao, private val app: A
                 profileData.create(newProfile)
 
                 _toHome.value = true
-            }
-            else{
+            } else {
                 _showSnackBar.value = true
             }
         }

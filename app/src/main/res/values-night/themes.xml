@@ -3,14 +3,29 @@
     <style name="Theme.BudgetManager" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_pink</item>
-        <item name="colorPrimaryVariant">@color/pink_0</item>
+        <item name="colorPrimaryVariant">@color/cream_1</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary_cream</item>
         <item name="colorSecondaryVariant">@color/primary_cream</item>
         <item name="colorOnSecondary">@color/black</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/cream_0</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="android:navigationBarColor">@color/cream_0</item>
+    </style>
+    <style name="Theme.MyMaterialTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_pink</item>
+        <item name="colorPrimaryDark">@color/cream_1</item>
+        <item name="colorAccent">@color/primary_pink</item>
+        <item name="textAppearanceButton">@style/AppTextAppearance.Button</item>
+    </style>
+    <!--To fix rendering in preview -->
+    <style name="AppTextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">true</item>
     </style>
 </resources>

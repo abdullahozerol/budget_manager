@@ -79,6 +79,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/input_name"
                 android:maxLength="20"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:text="@={frProfileViewModel.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,8 +120,8 @@
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_add"
-            android:text="@string/save"
             android:onClick="@{() -> frProfileViewModel.onSaveProfile()}"
+            android:text="@string/save"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/til_name"

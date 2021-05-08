@@ -4,8 +4,8 @@
     <!-- detaylı bilgi => https://www.journaldev.com/9481/android-animation-example -->
     <translate
         android:duration="300"
-        android:fromXDelta="-100%"
-        android:fromYDelta="0%"
+        android:fromXDelta="0%"
+        android:fromYDelta="-100%"
         android:toXDelta="0%"
         android:toYDelta="0%" />
 </set>

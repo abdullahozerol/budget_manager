@@ -57,7 +57,7 @@
                     android:id="@+id/tvExpenseDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_margin="6dp"
                     android:gravity="center"
                     android:textColor="@color/dark_gray_7"
                     android:textSize="19sp"

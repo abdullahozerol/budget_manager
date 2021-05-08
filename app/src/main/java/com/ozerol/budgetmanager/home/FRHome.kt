@@ -1,7 +1,6 @@
 package com.ozerol.budgetmanager.home
 
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -241,9 +240,7 @@ class FRHome : Fragment() {
                 }
             })
         }
-
         binding.invalidateAll()
-
 
         return binding.root
     }

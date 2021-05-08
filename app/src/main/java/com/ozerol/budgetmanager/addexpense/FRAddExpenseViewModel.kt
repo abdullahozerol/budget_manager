@@ -1,22 +1,16 @@
 package com.ozerol.budgetmanager.addexpense
 
-import android.graphics.Color
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import com.ozerol.budgetmanager.R
 import com.ozerol.budgetmanager.database.Expense
 import com.ozerol.budgetmanager.database.ExpenseDao
 import com.ozerol.budgetmanager.database.LastCurrencyDao
 import com.ozerol.budgetmanager.service.Repository
-import com.ozerol.budgetmanager.service.models.Currencies
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -58,8 +52,6 @@ class FRAddExpenseViewModel(
         _selectCurrency.postValue(R.id.rbTl)
     }
 
-    val myResponse = MutableLiveData<Response<Currencies?>>()
-
     private var _showSnackBar = MutableLiveData<Boolean>()
     val showSnackBar: LiveData<Boolean>
         get() = _showSnackBar
@@ -72,7 +64,7 @@ class FRAddExpenseViewModel(
 
         viewModelScope.launch {
 
-            if(cost!=null && description!=null){
+            if (cost != null && description != null) {
                 val df = DecimalFormat("###.##", DecimalFormatSymbols(Locale.ENGLISH))
                     .apply {
                         roundingMode = RoundingMode.HALF_UP
@@ -92,111 +84,53 @@ class FRAddExpenseViewModel(
                     else -> newExpense.imageCategory = "other"
                 }
 
+                val toTry = lastCurrencyData.getSavedTl()
+                val toUsd = lastCurrencyData.getSavedDl()
+                val toGbp = lastCurrencyData.getSavedSt()
 
-                val response = repository.getData("35c35c8d7bece1ddd065206c796b1411")
-                myResponse.value = response
+                when (this@FRAddExpenseViewModel._selectCurrency.value) {
+                    R.id.rbTl -> {
+                        newExpense.currency = " ₺"
+                        newExpense.cost = cost?.toDoubleOrNull()!!
+                        newExpense.tlCost = cost?.toDoubleOrNull()!!
 
-                if (response.isSuccessful) {
+                        newExpense.euCost = df.format(cost?.toDouble()!! / toTry!!).toDouble()
+                        newExpense.dlCost =
+                            df.format((cost?.toDouble()!! / toTry!!) * toUsd!!).toDouble()
+                        newExpense.stCost =
+                            df.format((cost?.toDouble()!! / toTry!!) * toGbp!!).toDouble()
 
-                    val eurToTry = response.body()?.rates?.TRY?.toDoubleOrNull()
-                    val eurToUsd = response.body()?.rates?.USD?.toDoubleOrNull()
-                    val eurToGbp = response.body()?.rates?.GBP?.toDoubleOrNull()
-
-
-                    when (this@FRAddExpenseViewModel._selectCurrency.value) {
-                        R.id.rbTl -> {
-                            newExpense.currency = " ₺"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.tlCost = cost?.toDoubleOrNull()!!
-
-                            newExpense.euCost = df.format(cost?.toDouble()!! / eurToTry!!).toDouble()
-                            newExpense.dlCost =
-                                df.format((cost?.toDouble()!! / eurToTry!!) * eurToUsd!!).toDouble()
-                            newExpense.stCost =
-                                df.format((cost?.toDouble()!! / eurToTry!!) * eurToGbp!!).toDouble()
-
-                        }
-                        R.id.rbSt -> {
-                            newExpense.currency = " £"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.stCost = cost?.toDoubleOrNull()!!
-
-                            newExpense.euCost = df.format(cost?.toDouble()!! / eurToGbp!!).toDouble()
-                            newExpense.dlCost =
-                                df.format((cost?.toDouble()!! / eurToGbp!!) * eurToUsd!!).toDouble()
-                            newExpense.tlCost =
-                                df.format((cost?.toDouble()!! / eurToGbp!!) * eurToTry!!).toDouble()
-                        }
-                        R.id.rbDl -> {
-                            newExpense.currency = " $"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.dlCost = cost?.toDoubleOrNull()!!
-
-                            newExpense.euCost = df.format(cost?.toDouble()!! / eurToUsd!!).toDouble()
-                            newExpense.stCost =
-                                df.format((cost?.toDouble()!! / eurToUsd!!) * eurToGbp!!).toDouble()
-                            newExpense.tlCost =
-                                df.format((cost?.toDouble()!! / eurToUsd!!) * eurToTry!!).toDouble()
-                        }
-                        else -> {
-                            newExpense.currency = " €"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.euCost = cost?.toDoubleOrNull()!!
-
-                            newExpense.stCost = df.format(cost?.toDouble()!! * eurToGbp!!).toDouble()
-                            newExpense.dlCost = df.format(cost?.toDouble()!! * eurToUsd!!).toDouble()
-                            newExpense.tlCost = df.format(cost?.toDouble()!! * eurToTry!!).toDouble()
-                        }
                     }
-                } else {
-                    val toTry = lastCurrencyData.getSavedTl()
-                    val toUsd = lastCurrencyData.getSavedDl()
-                    val toGbp = lastCurrencyData.getSavedSt()
+                    R.id.rbSt -> {
+                        newExpense.currency = " £"
+                        newExpense.cost = cost?.toDoubleOrNull()!!
+                        newExpense.stCost = cost?.toDoubleOrNull()!!
 
-                    when (this@FRAddExpenseViewModel._selectCurrency.value) {
-                        R.id.rbTl -> {
-                            newExpense.currency = " ₺"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.tlCost = cost?.toDoubleOrNull()!!
+                        newExpense.euCost = df.format(cost?.toDouble()!! / toGbp!!).toDouble()
+                        newExpense.dlCost =
+                            df.format((cost?.toDouble()!! / toGbp!!) * toUsd!!).toDouble()
+                        newExpense.tlCost =
+                            df.format((cost?.toDouble()!! / toGbp!!) * toTry!!).toDouble()
+                    }
+                    R.id.rbDl -> {
+                        newExpense.currency = " $"
+                        newExpense.cost = cost?.toDoubleOrNull()!!
+                        newExpense.dlCost = cost?.toDoubleOrNull()!!
 
-                            newExpense.euCost = df.format(cost?.toDouble()!! / toTry!!).toDouble()
-                            newExpense.dlCost =
-                                df.format((cost?.toDouble()!! / toTry!!) * toUsd!!).toDouble()
-                            newExpense.stCost =
-                                df.format((cost?.toDouble()!! / toTry!!) * toGbp!!).toDouble()
+                        newExpense.euCost = df.format(cost?.toDouble()!! / toUsd!!).toDouble()
+                        newExpense.stCost =
+                            df.format((cost?.toDouble()!! / toUsd!!) * toGbp!!).toDouble()
+                        newExpense.tlCost =
+                            df.format((cost?.toDouble()!! / toUsd!!) * toTry!!).toDouble()
+                    }
+                    else -> {
+                        newExpense.currency = " €"
+                        newExpense.cost = cost?.toDoubleOrNull()!!
+                        newExpense.euCost = cost?.toDoubleOrNull()!!
 
-                        }
-                        R.id.rbSt -> {
-                            newExpense.currency = " £"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.stCost = cost?.toDoubleOrNull()!!
-
-                            newExpense.euCost = df.format(cost?.toDouble()!! / toGbp!!).toDouble()
-                            newExpense.dlCost =
-                                df.format((cost?.toDouble()!! / toGbp!!) * toUsd!!).toDouble()
-                            newExpense.tlCost =
-                                df.format((cost?.toDouble()!! / toGbp!!) * toTry!!).toDouble()
-                        }
-                        R.id.rbDl -> {
-                            newExpense.currency = " $"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.dlCost = cost?.toDoubleOrNull()!!
-
-                            newExpense.euCost = df.format(cost?.toDouble()!! / toUsd!!).toDouble()
-                            newExpense.stCost =
-                                df.format((cost?.toDouble()!! / toUsd!!) * toGbp!!).toDouble()
-                            newExpense.tlCost =
-                                df.format((cost?.toDouble()!! / toUsd!!) * toTry!!).toDouble()
-                        }
-                        else -> {
-                            newExpense.currency = " €"
-                            newExpense.cost = cost?.toDoubleOrNull()!!
-                            newExpense.euCost = cost?.toDoubleOrNull()!!
-
-                            newExpense.stCost = df.format(cost?.toDouble()!! * toGbp!!).toDouble()
-                            newExpense.dlCost = df.format(cost?.toDouble()!! * toUsd!!).toDouble()
-                            newExpense.tlCost = df.format(cost?.toDouble()!! * toTry!!).toDouble()
-                        }
+                        newExpense.stCost = df.format(cost?.toDouble()!! * toGbp!!).toDouble()
+                        newExpense.dlCost = df.format(cost?.toDouble()!! * toUsd!!).toDouble()
+                        newExpense.tlCost = df.format(cost?.toDouble()!! * toTry!!).toDouble()
                     }
                 }
 
@@ -219,13 +153,13 @@ class FRAddExpenseViewModel(
                 expenseData.create(newExpense)
 
                 _toHome.value = true
-            }else{
+            } else {
                 _showSnackBar.value = true
             }
         }
+
     }
-
-
+    // Alternatif retrofit bağlama
 //    fun downloadCurrencyData() {
 //        viewModelScope.launch {
 //            val retrofit = Retrofit.Builder()
